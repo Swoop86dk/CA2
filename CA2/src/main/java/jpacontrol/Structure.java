@@ -18,12 +18,11 @@ public class Structure
     {
         HashMap<String, Object> puproperties = new HashMap<>();  
          
-        puproperties.put("javax.persistence.sql-load-script-source", "Script/data.sql");
+       // puproperties.put("javax.persistence.sql-load-script-source", "Script/data.sql");
         Persistence.generateSchema("puca", puproperties);
         
         puproperties.remove("javax.persistence.sql-load-script-source");
         Persistence.generateSchema("puca", puproperties);
         
-        Persistence.generateSchema("puca", null);
     }
 }

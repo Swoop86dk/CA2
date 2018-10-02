@@ -142,7 +142,7 @@ public class Person implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Person[ id=" + id + " ]";
+        return "Person{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + '}';
     }
     
 }

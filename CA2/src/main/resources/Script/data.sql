@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `CA2DATABASE`;
+CREATE DATABASE IF NOT EXISTS `CA2DATABASE`;
 USE `CA2DATABASE`;
 DROP TABLE IF EXISTS `hobby`;
 DROP TABLE IF EXISTS `person`;
@@ -12,7 +12,7 @@ CREATE TABLE `person` (
   `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)) 
   ENGINE=InnoDB DEFAULT CHARSET=latin1;
-INSERT INTO `person` VALUES (1,'Simon','SuperSoldier','fb05@gmail.com'),(2,'Stefan','DerFührer','Bunker69@nationen.dk'),(3,'Martin','UniBomber','BoomBoom@kaboom.dk');
+INSERT INTO `person` VALUES (1,'Simon','SuperSoldier','fUkBoI05@grinder.com'),(2,'Stefan','DerFührer','Bunker69@nationen.dk'),(3,'Martin','UniBomber','BoomBoom@kaboom.dk');
 
 CREATE TABLE `hobby` (
   `id` int(11) NOT NULL,

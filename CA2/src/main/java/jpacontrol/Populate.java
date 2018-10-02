@@ -22,9 +22,12 @@ public class Populate
         EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
-        Person p = new Person(4, "Hugo", "Weaving", "Elverland@frodo.dk");
+        Person p = new Person(1, "Hugo", "Weaving", "Elverland@frodo.dk");
         em.persist(p);
+        Person p1 = new Person(2,"Lars", "Bobo", "Elverland@frodo.dk");
+        em.persist(p1);
         em.getTransaction().commit();
         em.close();
+        
     }
 }
