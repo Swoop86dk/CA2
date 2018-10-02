@@ -17,7 +17,8 @@ INSERT INTO `person` VALUES (1,'Simon','SuperSoldier','fb05@gmail.com'),(2,'Stef
 CREATE TABLE `hobby` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `description` varchar(45) NOT NULL);
+  `description` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`));
 INSERT INTO `hobby` VALUES (1, 'Boksemester','slår på folk'),(2, 'Bademester','Bader meget'),(3, 'Madmester','Æder meget');
 
 
@@ -25,17 +26,20 @@ INSERT INTO `hobby` VALUES (1, 'Boksemester','slår på folk'),(2, 'Bademester',
 CREATE TABLE `address` (
   `id` int(11) NOT NULL,
   `street` varchar(45) NOT NULL,
-  `additional_info` varchar(45) NOT NULL);
+  `additional_info` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)) ;
 INSERT INTO `address` VALUES (1, 'Højhat 23','Dejlig gade'),(2, 'BrokenBone 34','Super gade'),(3, 'Medicine Street 65','drugs are free here');
 
 CREATE TABLE `cityinfo` (
   `id` int(11) NOT NULL,
   `zipcode` varchar(45) NOT NULL,
-  `city` varchar(45) NOT NULL);
+  `city` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`));
 INSERT INTO `cityinfo` VALUES (1, '2605','Brøndby'),(2, '2760','Måløv'),(3, '2750','Ballerup');
 
 CREATE TABLE `phone` (
   `id` int(11) NOT NULL,
   `number` varchar(45) NOT NULL,
-  `description` varchar(45) NOT NULL);
+  `description` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)) ;
 INSERT INTO `phone` VALUES (1, '44769212','fedt nummber'),(2, '87654321','Super nummer'),(3, '65656565','skide godt nummer terkel');
