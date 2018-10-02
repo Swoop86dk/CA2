@@ -34,4 +34,4 @@ INSERT INTO `cityinfo` VALUES ('2605','Brøndby'),('2760','Måløv'),('2750','Ba
 CREATE TABLE `phone` (
   `number` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL);
-INSERT INTO `address` VALUES ('44769212','fedt nummber'),('87654321','Super nummer'),('65656565','skide godt nummer terkel');
+INSERT INTO `phone` VALUES ('44769212','fedt nummber'),('87654321','Super nummer'),('65656565','skide godt nummer terkel');
