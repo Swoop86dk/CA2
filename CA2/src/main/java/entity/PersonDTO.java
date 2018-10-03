@@ -17,18 +17,20 @@ public class PersonDTO {
     private List<Hobby> hobbies = new ArrayList();
     private List<Address> addresses = new ArrayList();
 
-    public PersonDTO(Integer id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    
+    public PersonDTO(Person p) {
+        this.id = p.getId();
+        this.firstName = p.getFirstName();
+        this.lastName = p.getLastName();
+        this.email = p.getEmail();
+        this.phones = p.getPhones();
+        this.hobbies = p.getHobbies();
+        this.addresses = p.getAddresses();
+
+
     }
 
-    public PersonDTO(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+    
 
     public Integer getId() {
         return id;
