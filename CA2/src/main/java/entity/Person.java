@@ -23,6 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -82,6 +83,7 @@ public class Person implements Serializable
         addresses.add(a);
     }
     
+    @XmlTransient
     public List<Address> getAddresses()
     {
         return addresses;
@@ -94,6 +96,7 @@ public class Person implements Serializable
     
     
     
+    @XmlTransient
     public List<Hobby> getHobbies()
     {
         return hobbies;
@@ -128,6 +131,7 @@ public class Person implements Serializable
         phones.add(p);
     }
     
+    @XmlTransient
     public List<Phone> getPhones()
     {
         return phones;
