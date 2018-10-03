@@ -6,10 +6,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -50,6 +53,43 @@ public class Hobby implements Serializable
     @Size(min = 1, max = 45)
     @Column(name = "description")
     private String description;
+    @ManyToMany(mappedBy = "hobbies")
+    private List<Person> persons = new ArrayList<>();
+
+    public Hobby(String name, String description)
+    {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Hobby(Integer id, String name, String description, List<Person> persons)
+    {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.persons = persons;
+    }
+
+    public Hobby(String name, String description, List<Person> persons)
+    {
+        this.name = name;
+        this.description = description;
+        this.persons = persons;
+    }
+
+    public List<Person> getPersons()
+    {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons)
+    {
+        this.persons = persons;
+    }
+        public void addPerson(Person p)
+    {
+        persons.add(p); 
+    }
 
     public Hobby()
     {
@@ -124,7 +164,7 @@ public class Hobby implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Hobby[ id=" + id + " ]";
+        return "Hobby{" + "id=" + id + ", name=" + name + ", description=" + description + ", persons=" + persons + '}';
     }
     
 }

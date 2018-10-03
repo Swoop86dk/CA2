@@ -6,12 +6,19 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Martin
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "person")
 @XmlRootElement
 @NamedQueries(
@@ -57,7 +65,80 @@ public class Person implements Serializable
     @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
+    //OneToManyBi
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Phone> phones = new ArrayList();
+    
+    //ManytoMany with Hobby
+    @ManyToMany//(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Hobby> hobbies = new ArrayList();
 
+    // OneToManybi with Address
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList();
+
+    public void addAddress(Address a)
+    {
+        addresses.add(a);
+    }
+    
+    public List<Address> getAddresses()
+    {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses)
+    {
+        this.addresses = addresses;
+    }
+    
+    
+    
+    public List<Hobby> getHobbies()
+    {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobby> hobbies)
+    {
+        this.hobbies = hobbies;
+    }
+    
+    public void addHobbies(Hobby h)
+    {
+        hobbies.add(h);
+    }
+    
+    public Person(String firstName, String lastName, String email)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    
+    public Person(String firstName, String lastName, String email, List<Phone> phones)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phones = phones;
+    }
+        public void addPhones(Phone p)
+    {
+        phones.add(p);
+    }
+    
+    public List<Phone> getPhones()
+    {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones)
+    {
+        this.phones = phones;
+    }
+    
+    
     public Person()
     {
     }

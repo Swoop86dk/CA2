@@ -6,12 +6,16 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -50,6 +54,57 @@ public class Address implements Serializable
     @Size(min = 1, max = 45)
     @Column(name = "additional_info")
     private String additionalInfo;
+    @ManyToOne
+    private Person person;
+    //OneToManyBi with CityInfo class
+    @OneToMany(mappedBy = "address")
+    private List<Cityinfo> cityinfoes = new ArrayList<>();
+
+    public Address(String street, String additionalInfo)
+    {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+    }
+
+    public Address(Integer id, String street, String additionalInfo, Person person)
+    {
+        this.id = id;
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.person = person;
+    }
+
+    public Address(String street, String additionalInfo, Person person)
+    {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.person = person;
+    }
+
+        public void addCityinfo(Cityinfo c)
+    {
+        cityinfoes.add(c);
+    }
+    
+    public List<Cityinfo> getCityinfoes()
+    {
+        return cityinfoes;
+    }
+
+    public void setCityinfoes(List<Cityinfo> cityinfoes)
+    {
+        this.cityinfoes = cityinfoes;
+    }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
 
     public Address()
     {
@@ -124,7 +179,7 @@ public class Address implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Address[ id=" + id + " ]";
+        return "Address{" + "id=" + id + ", street=" + street + ", additionalInfo=" + additionalInfo + '}';
     }
     
 }
