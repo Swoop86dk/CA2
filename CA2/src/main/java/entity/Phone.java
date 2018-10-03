@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -50,6 +51,33 @@ public class Phone implements Serializable
     @Size(min = 1, max = 45)
     @Column(name = "description")
     private String description;
+    @ManyToOne
+    private Person person;
+
+    public Phone(String number, String description, Person person)
+    {
+        this.number = number;
+        this.description = description;
+        this.person = person;
+    }
+
+    public Phone(Integer id, String number, String description, Person person)
+    {
+        this.id = id;
+        this.number = number;
+        this.description = description;
+        this.person = person;
+    }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
 
     public Phone()
     {
@@ -124,7 +152,7 @@ public class Phone implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Phone[ id=" + id + " ]";
+        return "Phone{" + "id=" + id + ", number=" + number + ", description=" + description + ", person=" + person + '}';
     }
     
 }
