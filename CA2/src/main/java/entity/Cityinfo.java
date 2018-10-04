@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
     @NamedQuery(name = "Cityinfo.findAll", query = "SELECT c FROM Cityinfo c")
     , @NamedQuery(name = "Cityinfo.findById", query = "SELECT c FROM Cityinfo c WHERE c.id = :id")
-    , @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zipcode = :zipcode")
+    , @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zip = :zip")
     , @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")
 })
 public class Cityinfo implements Serializable
@@ -47,8 +47,8 @@ public class Cityinfo implements Serializable
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "zipcode")
-    private String zipcode;
+    @Column(name = "zip")
+    private String zip;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -57,16 +57,16 @@ public class Cityinfo implements Serializable
     @ManyToOne
     private Address address;
 
-    public Cityinfo(String zipcode, String city)
+    public Cityinfo(String zip, String city)
     {
-        this.zipcode = zipcode;
+        this.zip = zip;
         this.city = city;
     }
 
-    public Cityinfo(Integer id, String zipcode, String city, Address address)
+    public Cityinfo(Integer id, String zip, String city, Address address)
     {
         this.id = id;
-        this.zipcode = zipcode;
+        this.zip = zip;
         this.city = city;
         this.address = address;
     }
@@ -90,10 +90,10 @@ public class Cityinfo implements Serializable
         this.id = id;
     }
 
-    public Cityinfo(Integer id, String zipcode, String city)
+    public Cityinfo(Integer id, String zip, String city)
     {
         this.id = id;
-        this.zipcode = zipcode;
+        this.zip = zip;
         this.city = city;
     }
 
@@ -109,12 +109,12 @@ public class Cityinfo implements Serializable
 
     public String getZipcode()
     {
-        return zipcode;
+        return zip;
     }
 
-    public void setZipcode(String zipcode)
+    public void setZipcode(String zip)
     {
-        this.zipcode = zipcode;
+        this.zip = zip;
     }
 
     public String getCity()
