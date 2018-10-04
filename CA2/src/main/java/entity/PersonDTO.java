@@ -13,9 +13,9 @@ public class PersonDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private List<PhoneDTO> phones = new ArrayList();
-    private List<HobbyDTO> hobbies = new ArrayList();
-    private List<AddressDTO> addresses = new ArrayList();
+    private List<Phone> phones = new ArrayList();
+    private List<Hobby> hobbies = new ArrayList();
+    private List<Address> addresses = new ArrayList();
 
     
     public PersonDTO(Person p) {
@@ -23,9 +23,9 @@ public class PersonDTO {
         this.firstName = p.getFirstName();
         this.lastName = p.getLastName();
         this.email = p.getEmail();
-        this.phones = new ArrayList(p.getPhones());
-        this.hobbies = new ArrayList(p.getHobbies());
-        this.addresses = new ArrayList(p.getAddresses());
+        this.phones = p.getPhones();
+        this.hobbies = p.getHobbies();
+        this.addresses = p.getAddresses();
 
 
     }
@@ -48,15 +48,15 @@ public class PersonDTO {
         return email;
     }
 
-    public List<PhoneDTO> getPhones() {
+    public List<Phone> getPhones() {
         return phones;
     }
 
-    public List<HobbyDTO> getHobbies() {
+    public List<Hobby> getHobbies() {
         return hobbies;
     }
 
-    public List<AddressDTO> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
@@ -72,15 +72,15 @@ public class PersonDTO {
         this.email = email;
     }
 
-    public void setPhones(List<PhoneDTO> phones) {
+    public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 
-    public void setHobbies(List<HobbyDTO> hobbies) {
+    public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
     }
 
-    public void setAddresses(List<AddressDTO> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 

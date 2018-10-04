@@ -122,16 +122,7 @@ public class Person implements Serializable
         this.email = email;
         this.phones.add(p);
     }
-    public Person(PersonDTO p) {
-        
-        this.firstName = p.getFirstName();
-        this.lastName = p.getLastName();
-        this.email = p.getEmail();
-        this.phones = new ArrayList(p.getPhones());
-        this.hobbies = new ArrayList(p.getHobbies());
-        this.addresses = new ArrayList(p.getAddresses());
-    }
-    
+
     public Person(String firstName, String lastName, String email)
     {
         this.firstName = firstName;
