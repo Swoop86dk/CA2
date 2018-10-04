@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,16 +20,27 @@ public class PersonDTO {
 
     
     public PersonDTO(Person p) {
+        System.out.println(p);
         this.id = p.getId();
         this.firstName = p.getFirstName();
         this.lastName = p.getLastName();
         this.email = p.getEmail();
-        this.phones = new ArrayList(p.getPhones());
-        this.hobbies = new ArrayList(p.getHobbies());
-        this.addresses = new ArrayList(p.getAddresses());
-
-
+        for(Phone Ph : p.getPhones()){
+            this.phones.add(new PhoneDTO(Ph));
+        }
+        this.hobbies = new ArrayList();
+        for(Hobby h : p.getHobbies()){
+            this.hobbies.add(new HobbyDTO(h));
+        }
+        
+        this.addresses = new ArrayList();
+        for(Address a : p.getAddresses()){
+            this.addresses.add(new AddressDTO(a));
+        }
     }
+
+    
+    
 
     
 

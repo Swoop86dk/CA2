@@ -14,14 +14,14 @@ public class PhoneDTO
     private Integer id;
     private String number;
     private String description;
-    private Person person;
+   // private Person person;
     
     public PhoneDTO (Phone ph)
     {
         this.id = ph.getId();
         this.number = ph.getNumber();
         this.description = ph.getDescription();
-        this.person = ph.getPerson();
+        //this.person = ph.getPerson();
     }
 
     public Integer getId()
@@ -39,10 +39,10 @@ public class PhoneDTO
         return description;
     }
 
-    public Person getPerson()
+ /*   public Person getPerson()
     {
         return person;
-    }
+    }*/
 
     public void setNumber(String number)
     {
@@ -54,9 +54,9 @@ public class PhoneDTO
         this.description = description;
     }
 
-    public void setPerson(Person person)
+   /* public void setPerson(Person person)
     {
         this.person = person;
-    }
+    }*/
     
 }
