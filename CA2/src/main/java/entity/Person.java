@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -46,6 +48,7 @@ public class Person implements Serializable
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
@@ -112,6 +115,14 @@ public class Person implements Serializable
         hobbies.add(h);
     }
     
+    public Person(String firstName, String lastName, String email, Phone p)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phones.add(p);
+    }
+
     public Person(String firstName, String lastName, String email)
     {
         this.firstName = firstName;

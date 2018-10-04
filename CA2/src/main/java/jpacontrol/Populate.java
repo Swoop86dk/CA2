@@ -5,14 +5,10 @@
  */
 package jpacontrol;
 
-import entity.Address;
-import entity.Cityinfo;
-import entity.Hobby;
-import entity.Person;
+import entity.*;
 import facade.IFacadePerson;
 
 import java.util.*;
-import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -71,6 +67,7 @@ public class Populate
         Arrays.asList("Smith", "Jackson", "Jacobsen", "Gregersen", "Hood", "Lannister", "Targeryan", "Stark", "Williams", "Miller", "Wilson", "Brown", "Davis", "Wright", "Lopez", "Hall", "Allen", "Anderson", "Garcia", "Evans", "Edwards", "Parker", "Collins", "Robinson", "Turner", "Harris", "Mitchell", "Nelson", "Baker"));
         ArrayList<String> mail = new ArrayList( 
         Arrays.asList("@gmail.com", "@hotmail.com", "@webmail.com", "@hotmail.dk"));
+        ArrayList<Hobby> hobbies = new ArrayList( Arrays.asList(new Hobby("Bathing", "Bathing is great!"), new Hobby("LARP", "DEFEAT THE ORCS!"), new Hobby("Climbing", "Is that an ant or a human??"), new Hobby("Bacon eaters", "Mmm, bacon.."), new Hobby("Fencing", "FIGHT TILL YOUR BLADE BREAKS!!")));
 
 	for(int i = 0; i < amount; i++){
 		String getFName = fName.get(rng.nextInt(fName.size()));
@@ -79,7 +76,9 @@ public class Populate
                 int max = 99999999;
 		int phone = rng.nextInt(max - min) + min;
 		String email = getFName.substring(0,2) + "." + getLName + mail.get(rng.nextInt(mail.size()));
-		pf.addPerson(new Person(getFName, getLName, email, new ArrayList(phone)));
+                Person p = new Person(getFName, getLName, email);
+                p.addPhones(new Phone(Integer.toString(phone), "", p));
+		pf.addPerson(p);
 	
 	}
 }

@@ -32,11 +32,7 @@ public class ApplicationConfig extends Application
      */
     private void addRestResourceClasses(Set<Class<?>> resources)
     {
-        resources.add(service.AddressFacadeREST.class);
-        resources.add(service.CityinfoFacadeREST.class);
-        resources.add(service.HobbyFacadeREST.class);
-        resources.add(service.PersonFacadeREST.class);
-        resources.add(service.PhoneFacadeREST.class);
+        resources.add(rest.PersonResource.class);
     }
     
 }

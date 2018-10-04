@@ -1,9 +1,12 @@
 package facade;
 
 import entity.Person;
+import entity.PersonDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 public class IFacadePerson
 {
@@ -34,6 +37,21 @@ public class IFacadePerson
         }    
     }
     
+    public List<PersonDTO> getAllPersonsDTO()
+    {
+        List<PersonDTO> per = new ArrayList();
+        List<Person> pers;
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query nquery = em.createNamedQuery("Person.findAll");
+        pers = nquery.getResultList();
+        em.close();
+        for(Person p : pers) {
+            per.add(new PersonDTO(p));
+        }
+        return per;
+    }
+    
     public List<Person> getPersons()
     {
         EntityManager em = emf.createEntityManager();
@@ -61,6 +79,8 @@ public class IFacadePerson
         {
             em.getTransaction().begin();
             em.persist(p);
+            System.out.println(p.getPhones());
+//            p.addPhones(p);
             em.getTransaction().commit();
             return p;
         }
