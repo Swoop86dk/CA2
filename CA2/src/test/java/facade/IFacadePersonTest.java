@@ -6,6 +6,7 @@
 package facade;
 
 import entity.Person;
+import entity.PersonDTO;
 import java.util.List;
 import javax.persistence.Persistence;
 import org.junit.After;
@@ -128,7 +129,7 @@ public class IFacadePersonTest
     public static void main(String[] args)
     {
         IFacadePerson pf = new IFacadePerson( Persistence.createEntityManagerFactory( "puca" ) );
-        System.out.println("GetPerson : " + pf.getPerson(1).getFirstName());
+        System.out.println("GetPerson : " + pf.getPersonDTO(12).getFirstName());
         
         System.out.println("GetPersons : " + pf.getPersons());
         
@@ -136,9 +137,9 @@ public class IFacadePersonTest
         
         System.out.println("DeletePerson : " + pf.deletePerson(1));
         
-        Person p = pf.getPerson(2);
-        p.setFirstName("Alan");
-        System.out.println("EditPerson : " + pf.editPerson(p));
+       // Person p = pf.getPersonDTO(2);
+       // p.setFirstName("Alan");
+       // System.out.println("EditPerson : " + pf.editPerson(p));
         
         System.out.println("GetPersons : " + pf.getPersons() );
     }

@@ -64,6 +64,8 @@ public class Address implements Serializable
     @OneToMany(mappedBy = "address")
     private Cityinfo cityinfo = null;
 
+    
+    
     public Address(String street, String additionalInfo)
     {
         this.street = street;

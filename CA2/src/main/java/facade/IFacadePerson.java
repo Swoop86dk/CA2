@@ -18,25 +18,52 @@ public class IFacadePerson
         this.emf = emf;
     }
     
-    public Person getPerson(int id)
+    public PersonDTO getPersonDTO(Integer id)
     {
         EntityManager em = emf.createEntityManager();
-
-        Person p = null;
-        
-        try
-        {
+        try {
             em.getTransaction().begin();
-            p = em.find(Person.class, id);
-            em.getTransaction().commit();
-            return p;
-        }
-        finally
-        {
+            Person p = em.find(Person.class, id);
+            System.out.println(p);
+            PersonDTO pdto = new PersonDTO(p);
+            //PersonDTO p = new PersonDTO(em.find(Person.class, id));
+           // em.getTransaction().commit();
+            return pdto;
+
+        } finally {
             em.close();
-        }    
-    }
+        }
+//        {
+//            Person res = null;
+//        List<Person> person;
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        Query nquery = em.createNamedQuery("Person.findById", Person.class);
+//        person = nquery.getResultList();
+//        em.close();
+//        for(Person p : person) {
+//            res = p;
+//        }
+//        return res;
+//        
     
+//    }
+//            em.getTransaction().begin();
+//            //Person p = em.find(Person.class, id);
+//            //PersonDTO pedo = new PersonDTO(p);
+//            //Query nquery = em.createNamedQuery("Person.findById");
+//            Query qry = em.createQuery("SELECT p FROM Person p WHERE p.id = :" + id);
+//            Person person = (Person)qry.getSingleResult();
+//            em.getTransaction().commit();
+//            return person;
+//        }
+//        finally
+//        {
+//            em.close();
+//        }    
+    
+        
+    }
     public List<PersonDTO> getAllPersonsDTO()
     {
         List<PersonDTO> per = new ArrayList();
@@ -62,7 +89,7 @@ public class IFacadePerson
         {
             em.getTransaction().begin();
             persons = em.createQuery("Select p from Person p").getResultList();
-            em.getTransaction().commit();
+          //  em.getTransaction().commit();
             return persons;
         }
         finally
@@ -70,7 +97,25 @@ public class IFacadePerson
             em.close();
         }
     }
-
+    public PersonDTO addPerson(PersonDTO p) {
+        
+        EntityManager em = emf.createEntityManager();
+       
+        try
+        {
+            Person p1 = new Person(p);
+            em.getTransaction().begin();
+            em.persist(p1);
+//            p.addPhones(p);
+            em.getTransaction().commit();
+            return p;
+        }
+        finally
+        {
+            em.close();
+        }
+    }
+    
     public Person addPerson(Person p)
     {
         EntityManager em = emf.createEntityManager();
@@ -131,5 +176,7 @@ public class IFacadePerson
         
         return null;
     }
+
+ 
 }
 
