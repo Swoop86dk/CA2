@@ -24,25 +24,13 @@ public class Populate
 {
     public static void main(String[] args)
     {
-        populateAddresses(1);
-        //populatePeople(25);
+
+        populatePeople(25);
         
     }
-    private static ArrayList<Address> addresses = new ArrayList();
-    private static ArrayList<Address> tempAddress = new ArrayList(Arrays.asList(new Address("Lærkevej", ""), new Address("Birkevej", ""), new Address("Vibevej", ""), new Address("Vinkelvej", ""), new Address("Østergade", ""), new Address("Engvej", ""), new Address("Kirkevej", "")));
-    
-    
-    private static void populateAddresses(int amount){
-        Random rng = new Random();
-        AddressFacade af = new AddressFacade();
-        Address tmpAddress = tempAddress.get(rng.nextInt(tempAddress.size()));
-        tmpAddress.setCityinfo(af.getCity(rng.nextInt(1000)+1));
-        //addresses.add(tmpAddress);
-        System.out.println(tmpAddress);
-    }
+
     private static void populatePeople(int amount){
         IFacadePerson pf = new IFacadePerson( Persistence.createEntityManagerFactory( "puca" ) );
-        AddressFacade af = new AddressFacade();
         Random rng = new Random();
         ArrayList<String> fName = new ArrayList( 
         Arrays.asList("Jerry", "James", "Jacob", "Jakob", "Maisie", "Sophie", "Sofie", "Sophia", "Sofia", "Mary", "Sachiko", "Seiji", "Seijo", "Kurosaki", "Charles", "George", "Bruce", "Logan", "Linsey", "Lindsey", "Martin", "Simon", "Stefan", "Caroline", "Karoline", "Jessica", "Michel", "Michelle", "Michael", "Naja", "Maja", "Marie", "Frodo", "Gimli", "Luke", "Gandalf", "Legolas", "Louise", "Louis", "Doug", "Jeremy", "Jamie", "Ove", "Ole", "Karl", "Brian", "Robin", "Clark", "Daenerys"));
@@ -51,7 +39,7 @@ public class Populate
         ArrayList<String> mail = new ArrayList( 
         Arrays.asList("@gmail.com", "@hotmail.com", "@webmail.com", "@hotmail.dk"));
         ArrayList<Hobby> hobbies = new ArrayList( Arrays.asList(new Hobby("Bathing", "Bathing is great!"), new Hobby("LARP", "DEFEAT THE ORCS!"), new Hobby("Climbing", "Is that an ant or a human??"), new Hobby("Bacon eaters", "Mmm, bacon.."), new Hobby("Fencing", "FIGHT TILL YOUR BLADE BREAKS!!")));
-        ArrayList<Cityinfo> cities = af.getAllCities();
+        System.out.println("First names: " + fName.size() + " Last names: " + lName.size());
 	for(int i = 0; i < amount; i++){
 		String getFName = fName.get(rng.nextInt(fName.size()));
 		String getLName = lName.get(rng.nextInt(lName.size()));

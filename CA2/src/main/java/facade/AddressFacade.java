@@ -37,19 +37,19 @@ public class AddressFacade {
         }
         return res;
     }
-     public Cityinfo getCity(int id)
+     public Cityinfo getCity(Integer id)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory( "puca" );
-        Cityinfo res = null;
-        List<Cityinfo> cities;
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Query nquery = em.createNamedQuery("Cityinfo.findById");
-        cities = nquery.getResultList();
-        em.close();
-        for(Cityinfo c : cities) {
-            res = c;
+        
+        try {
+            em.getTransaction().begin();
+            Cityinfo c = em.find(Cityinfo.class, id);
+            System.out.println(c);
+            return c;
+
+        } finally {
+            em.close();
         }
-        return res;
-    }
+}
 }

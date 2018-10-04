@@ -62,7 +62,7 @@ public class Address implements Serializable
     private Person person;
     //OneToManyBi with CityInfo class
     @OneToMany(mappedBy = "address")
-    private Cityinfo cityinfo = null;
+    private List<Cityinfo> cityinfoes = new ArrayList<>();
 
     public Address(String street, String additionalInfo)
     {
@@ -86,14 +86,14 @@ public class Address implements Serializable
     }
     
     @XmlTransient
-    public Cityinfo getCityinfo()
+    public List<Cityinfo> getCityinfoes()
     {
-        return cityinfo;
+        return cityinfoes;
     }
 
-    public void setCityinfo(Cityinfo cityinfo)
+    public void setCityinfoes(List<Cityinfo> cityinfoes)
     {
-        this.cityinfo = cityinfo;
+        this.cityinfoes = cityinfoes;
     }
 
     public Person getPerson()
@@ -105,7 +105,10 @@ public class Address implements Serializable
     {
         this.person = person;
     }
-
+    public void addCityinfo(Cityinfo c)
+    {
+        cityinfoes.add(c);
+    }
     public Address()
     {
     }
