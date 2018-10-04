@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import entity.Person;
 import entity.PersonDTO;
 import facade.IFacadePerson;
-import facade.jsoncon;
 import java.util.Set;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
@@ -71,18 +70,16 @@ public class PersonResource
     @Path("/allasarray")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllasArray() {
-        return Response.ok().entity(gson.toJson(pf.getAllPersonsDTO())).build();
+        return Response.ok().entity(gson.toJson(pf.getPersons())).build();
     }
     
         // Method to test the use of semantic parameters. Test with /api/Person/3
     @GET
     @Path("/{id}") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonByID(@PathParam("id") Integer id) {
+    public Response getPersonByID(@PathParam("id") int id) {
         
-        PersonDTO p = pf.getPersonDTO(id);
-        
-        return jsoncon.JsonFromPersonDTO(p);
+        return Response.ok().entity(gson.toJson(pf.getPersonDTO(id))).build();
     }
     
     // Method to test use of request parameters from a web form. Test with POST: /api/Person/ DATA: {  "firstName": "TestFname1","lastName": "TestLname2","email": "TestPerson@hotmail.dk","phones": [],"hobbies": [],"addresses": []}
@@ -97,16 +94,12 @@ public class PersonResource
     }
 
         // Method to test use PUT from script.js. Test with PUT: /api/person/1 DATA: { "fname": "Bente", "lname": "Hansen", "phone": "12345678" }
-  
-    
- 
-
-@PUT
+    @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePerson( String content, @PathParam("id") int id) {
-        PersonDTO newPerson = gson.fromJson(content, PersonDTO.class);
+        Person newPerson = gson.fromJson(content, Person.class);
         PersonDTO savedPer = pf.getPersonDTO(id);
 //        if(savedPer == null)
 //            throw new CustomerNotFoundException("no customer with id: "+id);
@@ -114,16 +107,14 @@ public class PersonResource
             savedPer.setFirstName(newPerson.getFirstName());
         if(newPerson.getLastName()!=null)
             savedPer.setLastName(newPerson.getLastName());
-        if(newPerson.getPhones()!=null)
-            savedPer.setPhones(newPerson.getPhones());
-        if(newPerson.getEmail()!=null)
-            savedPer.setEmail(newPerson.getEmail());
-        if(newPerson.getHobbies()!=null)
-            savedPer.setHobbies(newPerson.getHobbies());
+//        if(newPerson.getPhones()!=null)
+//            savedPer.setPhones(newPerson.getPhones());
+//        if(newPerson.getEmail()!=null)
+//            savedPer.setEmail(newPerson.getEmail());
+//        if(newPerson.getHobbies()!=null)
+//            savedPer.setHobbies(newPerson.getHobbies());
         return Response.ok().entity(gson.toJson(savedPer)).build();
     }
-
-
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)

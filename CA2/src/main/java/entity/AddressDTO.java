@@ -17,14 +17,14 @@ public class AddressDTO
     private Integer id;
     private String street;
     private String additionalInfo;
-    
+    private Person person;
     private List<Cityinfo> cityinfoes = new ArrayList<>();
 
     public AddressDTO (Address a) {
         this.id = a.getId();
         this.street = a.getStreet();
         this.additionalInfo = a.getAdditionalInfo();
-        
+        this.person = a.getPerson();
         this.cityinfoes = a.getCityinfoes();
     }
 
@@ -43,6 +43,10 @@ public class AddressDTO
         return additionalInfo;
     }
 
+    public Person getPerson()
+    {
+        return person;
+    }
 
     public List<Cityinfo> getCityinfoes()
     {
@@ -59,6 +63,10 @@ public class AddressDTO
         this.additionalInfo = additionalInfo;
     }
 
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
 
     public void setCityinfoes(List<Cityinfo> cityinfoes)
     {
