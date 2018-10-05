@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+</head>
+    <body>
+        <input type = 'number' min = 1 id = 'infoID' value = 1>
+        <input type = 'button' onclick = 'requestID(infoID.value)' value = 'Get data'>
+        <input type = 'button' onclick = 'requestAll("http://localhost:8080/CA2/api/Person/", "info")' value = 'Get all'>
+        <div id="info"></div>
+        <input type = 'text' id = 'nameID' value = "">
+        <input type = 'button' onclick = 'createPerson(nameID.value)' value = 'Create Person'>
+        <div id="name"></div>
+        <input type = 'number' min = 1 id = 'perID' value = 1>
+        <input type = 'button' onclick = 'deletePerson(perID.value)' value = 'Delete ID'>
+        <div id="per"></div>
+        <script src="index.js" type="text/javascript"></script>
+    </body>
+</html>

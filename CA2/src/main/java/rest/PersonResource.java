@@ -10,7 +10,6 @@ import com.google.gson.GsonBuilder;
 import entity.Person;
 import entity.PersonDTO;
 import exceptions.ExceptionDTO;
-import exceptions.PersonNotFoundException;
 import facade.IFacadePerson;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
@@ -103,11 +102,9 @@ public class PersonResource
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updatePerson( String content, @PathParam("id") int id) throws PersonNotFoundException {
+    public Response updatePerson( String content, @PathParam("id") int id)  {
         PersonDTO newPerson = gson.fromJson(content, PersonDTO.class);
         PersonDTO savedPer = pf.getPersonDTO(id);
-        if(savedPer == null)
-            throw new PersonNotFoundException("no customer with id: "+id);
         if(newPerson.getFirstName()!=null)
             savedPer.setFirstName(newPerson.getFirstName());
         if(newPerson.getLastName()!=null)
@@ -143,7 +140,4 @@ public class PersonResource
             return gson.toJson(exDTO);
         }
     }
-//        private PersonDTO findPerson(Integer id){
-//        return pf.getPersonDTO(id);
-//    }
 }
