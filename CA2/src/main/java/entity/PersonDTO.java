@@ -13,20 +13,30 @@ public class PersonDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private List<Phone> phones = new ArrayList();
-    private List<Hobby> hobbies = new ArrayList();
-    private List<Address> addresses = new ArrayList();
+    private List<PhoneDTO> phones = new ArrayList();
+    private List<HobbyDTO> hobbies = new ArrayList();
+    private List<AddressDTO> addresses = new ArrayList();
+    
 
     
     public PersonDTO(Person p) {
+        System.out.println(p);
         this.id = p.getId();
         this.firstName = p.getFirstName();
         this.lastName = p.getLastName();
         this.email = p.getEmail();
-        this.phones = p.getPhones();
-        this.hobbies = p.getHobbies();
-        this.addresses = p.getAddresses();
-
+        for(Phone Ph : p.getPhones()){
+            this.phones.add(new PhoneDTO(Ph));
+        }
+        this.hobbies = new ArrayList();
+        for(Hobby h : p.getHobbies()){
+            this.hobbies.add(new HobbyDTO(h));
+        }
+        
+        this.addresses = new ArrayList();
+        for(Address a : p.getAddresses()){
+            this.addresses.add(new AddressDTO(a));
+        }
 
     }
 
@@ -48,15 +58,15 @@ public class PersonDTO {
         return email;
     }
 
-    public List<Phone> getPhones() {
+    public List<PhoneDTO> getPhones() {
         return phones;
     }
 
-    public List<Hobby> getHobbies() {
+    public List<HobbyDTO> getHobbies() {
         return hobbies;
     }
 
-    public List<Address> getAddresses() {
+    public List<AddressDTO> getAddresses() {
         return addresses;
     }
 
@@ -72,15 +82,15 @@ public class PersonDTO {
         this.email = email;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(List<PhoneDTO> phones) {
         this.phones = phones;
     }
 
-    public void setHobbies(List<Hobby> hobbies) {
+    public void setHobbies(List<HobbyDTO> hobbies) {
         this.hobbies = hobbies;
     }
 
-    public void setAddresses(List<Address> addresses) {
+    public void setAddresses(List<AddressDTO> addresses) {
         this.addresses = addresses;
     }
 
