@@ -11,7 +11,7 @@ function requestID(id){
 function requestAll(url, div)
 {
     var res = '<table style = width: 100%><tr id = "tableHead"><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone</th><th>Hobby</th><th>Address</th></tr>';
-    for(i = 1; i <= 10; i++)
+    for(i = 1; i <= 100; i++)
     {
         res += '<id =' + i + '>'
         fetch(url+i)
